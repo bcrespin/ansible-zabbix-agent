@@ -1,0 +1,7 @@
+---
+- name: "Install zabbix agent package (OpenBSD)"
+  openbsd_pkg: name="zabbix-agent--" state={{ zabbix_agent_package_state }}
+
+- name: "create zabbix agent logdir (FreeBSD)"
+  file: path={{ agent_logfile | dirname }} state=directory owner={{ zabbix_agent_user }} group={{ zabbix_agent_group }} mode=0755
+

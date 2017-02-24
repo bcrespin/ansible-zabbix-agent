@@ -1,0 +1,7 @@
+---
+zabbix_agent_service: zabbix_agentd
+zabbix_agent_config: /etc/zabbix/zabbix_agentd.conf
+root_group: wheel
+zabbix_agent_user: _zabbix
+zabbix_agent_group: _zabbix
+

@@ -39,6 +39,24 @@
     - config
     - service
 
+- name: "Install zabbix agent (OpenBSD)"
+  include: "OpenBSD.yml"
+  when: ansible_os_family == "OpenBSD"
+  tags:
+    - zabbix-agent
+    - init
+    - config
+    - service
+
+- name: "Install zabbix agent (FreeBSD)"
+  include: "FreeBSD.yml"
+  when: ansible_os_family == "FreeBSD"
+  tags:
+    - zabbix-agent
+    - init
+    - config
+    - service
+
 - name: "Fail invalid specified agent_listeninterface"
   fail:
     msg: "The specified network interface does not exist"
@@ -76,9 +94,9 @@
 
 - name: "Configure zabbix-agent"
   template: src=zabbix_agentd.conf.j2
-            dest=/etc/zabbix/zabbix_agentd.conf
+            dest={{ zabbix_agent_config }}
             owner=root
-            group=root
+            group={{ root_group }}
             mode=0644
   notify: restart zabbix-agent
   become: yes
@@ -90,7 +108,7 @@
 - name: "Create include dir zabbix-agent"
   file: path={{ agent_include }}
         owner=root
-        group=root
+        group={{ root_group }}
         state=directory
   become: yes
   tags:
@@ -98,7 +116,7 @@
     - include
 
 - name: "Make sure the zabbix-agent service is running"
-  service: name=zabbix-agent
+  service: name={{ zabbix_agent_service }}
            state=started
            enabled=yes
   become: yes
