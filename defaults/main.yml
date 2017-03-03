@@ -9,6 +9,10 @@ agent_server:
 agent_serveractive:
 zabbix_agent_service_name: zabbix-agent
 zabbix_agent_config: /etc/zabbix/zabbix_agentd.conf
+
+zabbix_agent_group_userparameter: []
+zabbix_agent_host_userparameter: []
+
 root_group: root
 
 # Zabbix API stuff

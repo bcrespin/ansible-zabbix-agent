@@ -115,6 +115,12 @@
     - config
     - include
 
+- name: "Include UserParams"
+  include: agent-userparameter.yml
+  tags:
+    - config
+    - include
+
 - name: "Make sure the zabbix-agent service is running"
   service: name={{ zabbix_agent_service }}
            state=started

@@ -1,0 +1,4 @@
+# ansible managed file
+{% for line in  item.userparams %}
+UserParameter={{ line }}
+{% endfor %}

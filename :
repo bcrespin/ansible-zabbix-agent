@@ -1,0 +1,12 @@
+---
+- name: add group userparameter
+  template: src=userparameter.conf.j2 dest= {{ agent_include }}/{{ item.name }}
+  with_items: zabbix_agent_group_userparameter
+  when: zabbix_agent_group_userparameter != []
+
+- name: add host userparameter
+#  template: src=userparameter.conf.j2 dest= {{ agent_include }}/{{ item.name }}
+  debug: msg={{ item }}
+  with_items: zabbix_agent_host_userparameter
+  when: zabbix_agent_host_userparameter != []
+

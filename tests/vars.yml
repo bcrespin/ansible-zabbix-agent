@@ -1,1 +1,6 @@
 ---
+zabbix_agent_host_userparameter:
+  - name: 'zfs'
+    userparams:
+      - zfs.pool.total[*], zfs list -p | grep '$1 ' | awk '{ print $$2+$$3}'
+      - zfs.pool.used[*], zfs list -p | grep '$1 ' | awk '{ print $$2}'
